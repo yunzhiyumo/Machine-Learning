@@ -1,0 +1,15 @@
+# 余弦相似度算法，求物品i和j的余弦相似度
+def CosineSim(item_tags,i,j):
+    ret = 0
+    for b,wib in item_tags[i].items():
+        if b in item_tags[j]:
+            ret += wib * item_tags[j][b]
+    ni = 0
+    nj = 0
+    for b,w in item_tags[i].items():
+        ni += w*w
+    for b,w in item_tags[j].items():
+        nj += w*w
+    if ret == 0:
+        return 0
+    return ret / math.sqrt(ni * nj)
