@@ -17,11 +17,15 @@ def classify0(inX, dataSet, labels, k):
 # a.shape[1] 为维度
 # =============================================================================
     #以下使用欧式距离公式，共4行
+    # 把inX变成4列，再求和dataSet的差
     diffMat = tile(inX, (dataSetSize,1)) - dataSet
+    # tile（a,（b,2）） 重复数组a，b次,2组组成新的一组
     sqDiffMat = diffMat**2
     sqDistances = sqDiffMat.sum(axis=1)
+    # 数组每一行自己相加
     distances = sqDistances**0.5
     sortedDistIndicies = distances.argsort()     
+    # argsort函数返回的是数组值从小到大的索引值，是序号
     classCount={}          
     for i in range(k):
         voteIlabel = labels[sortedDistIndicies[i]]
