@@ -1,3 +1,5 @@
+# 主要使用的是欧式举例公式
+
 from numpy import *         
 #和import numpy不一样，如果是后者，则需要numpy.array（）
 import operator
