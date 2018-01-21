@@ -1,1 +1,18 @@
-1
+# -*- coding: utf-8 -*-
+"""
+Created on Sun Jan 21 22:01:28 2018
+
+@author: pm123
+"""
+
+from numpy import *         
+
+def autoNorm(dataSet):
+    minVals = dataSet.min(0) #选取矩阵每列的最小值
+    maxVals = dataSet.max(0)
+    ranges = maxVals - minVals
+    normDataSet = zeros(shape(dataSet))   #shape复制了dataSet整体结构
+    m = dataSet.shape[0]  #dataSet结构中的一部分
+    normDataSet = (dataSet - tile(minVals,(m,1)))/tile(ranges,(m,1))
+    return normDataSet
+    
