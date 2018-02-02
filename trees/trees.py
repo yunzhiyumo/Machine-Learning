@@ -71,16 +71,17 @@ def majorityCnt(classList):
         classCount[vote] += 1
     #排序 iteritems()迭代器，reverse=True降序，
     sortedClassCount = sorted(classCount.iteritems(),key=operator.itemgetter(1),reverse=True)
-    return sortedClassCount[0][0]  #出来的结果会把字典变成[('C', 10), ('B', 12), ('A', 15)]
+    return sortedClassCount[0][0]  #出来的结果会把字典变成[('C', 10), ('B', 12), ('A', 15)]  
 
 
 def createTree(dataSet,labels):
     classList = [example[-1] for example in dataSet]  #['yes', 'yes', 'no', 'no', 'no']
-    #判断是否只有一个特征
+    #可能有多个特征，但结果只有一个类别 no
     if classList.count(classList[0]) == len(classList): 
-        return classList[0]
+        return classList[0]  #no
+    #只剩最后一个特征了，没办法划分完，就选择个出现次数最多的类别
     if len(dataSet[0]) == 1:
-       return majorityCnt(classList)  
+       return majorityCnt(classList)   #no
     #else
     bestFeat = chooseBestFeatureToSplit(dataSet) #找出最大熵特征
     bestFeatLabel = labels[bestFeat] #最大熵特征的名称
@@ -94,6 +95,16 @@ def createTree(dataSet,labels):
         myTree[bestFeatLabel][value] = createTree(splitDataSet(dataSet,bestFeat,value),subLabels)
     return myTree
 
- 
 
+
+
+
+
+
+
+
+
+
+
+            
     
