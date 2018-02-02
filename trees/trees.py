@@ -87,7 +87,7 @@ def createTree(dataSet,labels):
     myTree = {bestFeatLabel:{}} #一次输出！！  ！
     #为下次循环做准备
     del(labels[bestFeat]) #！！！
-    featValues = [example[bestFeat] for example in detaSet] #最优特征的所有值
+    featValues = [example[bestFeat] for example in dataSet] #最优特征的所有值
     uniqueVals = set(featValues) #[0,1]
     for value in uniqueVals:  # 0 1
         subLabels = labels[:]  #{'flippers'}
